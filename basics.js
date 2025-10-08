@@ -1,3 +1,19 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+//7-10-25
 //basic code
 function addNumbers(a, b) {
     return a + b;
@@ -37,12 +53,12 @@ console.log(Sal);
 //Array-Type inference
 var numbers = [2, 3, 4, 8];
 numbers.push(6);
-var head = numbers[0];
-var tail = numbers[3];
-console.log(head, tail);
+var first = numbers[0];
+var last = numbers[3];
+console.log(first, last);
 //Tuples
 var ourStudent;
-ourStudent = [6, "alekhya", "True"];
+ourStudent = [6, "alekhya", true];
 console.log(ourStudent);
 //Object Types
 var car = { type: "BMW" };
@@ -65,3 +81,88 @@ var p1 = { name: "mukhi", age: 21 };
 console.log(p1);
 var details = "Yuktha";
 console.log(details);
+var person1 = {
+    Username: "Kodumru",
+    UserId: 2100031062,
+};
+console.log(person1);
+//Functions
+function func() {
+    //void used when func doesnt return any value
+    console.log("Hello World");
+}
+function Sum(a, b) {
+    return a + b;
+}
+console.log(Sum(10, 20));
+//default parameter functions
+function power(val, exponent) {
+    if (exponent === void 0) { exponent = 5; }
+    return Math.pow(val, exponent);
+}
+console.log(power(5));
+var negateFunction = function (value) { return value * -1; };
+console.log(negateFunction(5));
+//Type casting
+var x = 10.6;
+console.log(Math.round(x)); //"as" overrides the type of variable
+var y = "hello";
+console.log(y.length); //"<> is same as 'as'".
+//Classess
+var Human = /** @class */ (function () {
+    function Human(skincolour) {
+        if (skincolour === void 0) { skincolour = "dusky"; }
+        this.ownername = "Jane";
+        this.height = 180;
+        this.skincolour = skincolour;
+    }
+    return Human;
+}());
+var man = new Human("black");
+console.log("Man name is Jane,skincolour is ".concat(man.skincolour, ",height is ").concat(man.height));
+var Rectangle = /** @class */ (function () {
+    function Rectangle(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    Rectangle.prototype.getArea = function () {
+        return this.width * this.height;
+    };
+    return Rectangle;
+}());
+var Square = /** @class */ (function (_super) {
+    __extends(Square, _super);
+    function Square(width) {
+        return _super.call(this, width, width) || this;
+    }
+    return Square;
+}(Rectangle));
+var mySq = new Square(20);
+console.log(mySq.getArea());
+var Rectangles = /** @class */ (function () {
+    // using protected for these members allows access from classes that extend from this class, such as Square
+    function Rectangles(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    Rectangles.prototype.getArea = function () {
+        return this.width * this.height;
+    };
+    Rectangles.prototype.toString = function () {
+        return "Rectangle[width=".concat(this.width, ", height=").concat(this.height, "]");
+    };
+    return Rectangles;
+}());
+var Squares = /** @class */ (function (_super) {
+    __extends(Squares, _super);
+    function Squares(width) {
+        return _super.call(this, width, width) || this;
+    }
+    // this toString replaces the toString from Rectangle
+    Squares.prototype.toString = function () {
+        return "Square[width=".concat(this.width, "]");
+    };
+    return Squares;
+}(Rectangles));
+var mySquares = new Squares(20);
+console.log(mySquares.toString());
