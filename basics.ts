@@ -88,7 +88,7 @@ console.log(p1);
 type personDetails = string | number;
 let details: personDetails = "Yuktha";
 console.log(details);
-//function alias
+
 --------------------------------------------------------------------------------------------
 //8-10-25
 //Interfaces-only applies for object types
